@@ -1,0 +1,251 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace WindowsFormsApplication1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        int soruno = 0;
+        int dogru = 0;
+        int yanlıs = 0;
+        int süre=20;
+        
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
+            timer1.Enabled = true;
+            süre = 20;
+            label14.Text = süre.ToString();
+            button5.Text = "İLERİ";
+            button1.Enabled = true;
+            button2.Enabled = true;
+            button3.Enabled = true;
+            button4.Enabled = true;
+            soruno++;
+            label2.Text = soruno.ToString();
+            if (soruno==1)
+            {
+                richTextBox1.Text = "40. Fatih Sultan Mehmet’in babası kimdir??";
+                button1.Text = "Yıldırım Beyazıt";
+                button2.Text = "IV. Murat";
+                button3.Text = "I. Murat";
+                button4.Text = "II. Murat";
+                label4.Text = "II. Murat";
+                label4.Visible = false;
+            }
+            if (soruno==2)
+            {
+                richTextBox1.Text = "Hangisi periyodik tabloda bulunan bir element değildir??";
+                button1.Text = "SU";
+                button2.Text = "OKSIJEN";
+                button3.Text = "DEMİR";
+                button4.Text = "AZOT";
+                label4.Text = "SU";
+            }
+            if (soruno==3)
+            {
+                richTextBox1.Text = "Türkiyenin en büyük sehiri hangisidir?";
+                button1.Text = "Konya";
+                button2.Text = "Sivas";
+                button3.Text = "Erzurum";
+                button4.Text = "Antalya";
+                label4.Text = "Konya";
+
+            }
+            if (soruno == 4)
+            {
+                richTextBox1.Text = "Hangisi Kanuni Sultan Süleyman’ın eşidir?";
+                button1.Text = "HÜRREM SULTAN";
+                button2.Text = "MERVE SULTAN";
+                button3.Text = "KÖSEM SULTAN";
+                button4.Text = "SAFİYE SULTAN";
+                label4.Text = "HÜRREM SULTAN";
+
+            }
+            if (soruno == 5)
+            {
+                richTextBox1.Text = "Hangisi giriş birimidir?";
+                button1.Text = "hoparlör";
+                button2.Text = "yazıcı";
+                button3.Text = "monitör";
+                button4.Text = "tarayıcı";
+                label4.Text = "tarayıcı";
+
+            }
+            if (soruno == 6)
+            {
+                richTextBox1.Text = "Ülkemizin baglı oldugu kıta hangisidir?";
+                button1.Text = "ortaasya";
+                button2.Text = "avrupa";
+                button3.Text = "afrika";
+                button4.Text = "amerika";
+                label4.Text = "ortaasya";
+
+            }
+            if (soruno == 7)
+            {
+                richTextBox1.Text = "2021 expo nerede düzenlenecektir?";
+                button1.Text = "bursa";
+                button2.Text = "hatay";
+                button3.Text = "istanbul";
+                button4.Text = "ankara";
+                label4.Text = "hatay";
+
+            }
+            if (soruno == 8)
+            {
+                richTextBox1.Text = "Fransız İhtilali kaç yılında gerçekleşmiştir??";
+                button1.Text = "1781-1792";
+                button2.Text = "1782-1793";
+                button3.Text = "1784-1795";
+                button4.Text = "1789-1799";
+                label4.Text = "1789-1799";
+
+            }
+            if (soruno == 9)
+            {
+                richTextBox1.Text = "Bir elektrik devresinde direnç hangi harfle gösterilir?";
+                button1.Text = "V";
+                button2.Text = "R";
+                button3.Text = "D";
+                button4.Text = "A";
+                label4.Text = "R";
+
+                MessageBox.Show("YARISMA SONA ERDİ");
+
+            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            label3.Text = button1.Text;
+            if (label3.Text==label4.Text)
+            {
+                dogru++;
+                MessageBox.Show("Cevap  DOGRU");     
+                label7.Text = dogru.ToString();
+            }
+            else
+            {
+                yanlıs++;
+                label9.Text = yanlıs.ToString();
+                MessageBox.Show("Cevap YANLIS");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            label3.Text = button2.Text;
+            if (label3.Text == label4.Text)
+            {
+                MessageBox.Show("Cevap  DOGRU");
+                dogru++;
+
+                label7.Text = dogru.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Cevap YANLIS");
+                yanlıs++;
+                label9.Text = yanlıs.ToString();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            label3.Text = button3.Text;
+            if (label3.Text == label4.Text)
+            {
+                MessageBox.Show("Cevap  DOGRU");
+                dogru++;
+
+                label7.Text = dogru.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Cevap YANLIS");
+                yanlıs++;
+                label9.Text = yanlıs.ToString();
+
+                label7.Text = dogru.ToString();
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            label3.Text = button4.Text;
+            if (label3.Text == label4.Text)
+            {
+                MessageBox.Show("Cevap  DOGRU");
+                dogru++;
+
+                label7.Text = dogru.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Cevap YANLIS");
+                yanlıs++;
+                label9.Text = yanlıs.ToString();
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            label12.Text = DateTime.Now.ToLongTimeString();
+            label13.Text = DateTime.Now.ToLongDateString();
+            süre = Convert.ToInt32(Label14.Text);
+            süre = süre - 1;
+            label14.Text = süre.ToString();
+            if (süre==0)
+            {
+                
+                yanlıs++;
+                label9.Text = yanlıs.ToString();
+                timer1.Enabled = false;
+                MessageBox.Show("SÜRE DOLDU");
+                this.Hide();
+                
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            timer1.Start();
+            label14.Text = "";
+            
+        }
+    }
+}
