@@ -1,0 +1,129 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace WindowsFormsApplication1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Add(textBox1.Text);
+            listBox2.Items.Add(textBox2.Text);
+            listBox3.Items.Add(textBox3.Text);
+            listBox4.Items.Add(comboBox1.Text);
+            listBox5.Items.Add(comboBox2.Text);
+
+            listBox7.Items.Add(textBox1.Text);
+            listBox7.Items.Add(textBox2.Text);
+            listBox7.Items.Add(textBox3.Text);
+            listBox7.Items.Add(comboBox1.Text);
+            listBox7.Items.Add(comboBox2.Text);
+
+
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            comboBox1.Text = "";
+            comboBox2.Text = "";
+            listBox7.Items.Clear();
+            listBox6.Items.Clear();
+            listBox5.Items.Clear();
+            listBox4.Items.Clear();
+            listBox3.Items.Clear();
+            listBox2.Items.Clear();
+            listBox1.Items.Clear();
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            listBox6.Items.Add(checkBox1.Text);
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            listBox6.Items.Add(checkBox2.Text);
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            listBox6.Items.Add(checkBox4.Text);
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            listBox6.Items.Add(checkBox3.Text);
+        }
+
+
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            listBox6.Items.Add(checkBox5.Text);
+        }
+
+        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        {
+            listBox6.Items.Add(checkBox6.Text);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+           
+       
+        label16.Text = DateTime.Now.ToLongDateString();
+        label17.Text = DateTime.Now.ToLongTimeString();
+            this.Text = "                                                                    *** BİLİŞİM PİZZA ***                         *** BİLİŞİM PİZZA ***               *** BİLİŞİM PİZZA ***  ";
+            label14.Text = ("                                                                    *** AFİYET OLSUN ***                         *** AFİYET OLSUN ***               *** AFİYET OLSUN ***  ");
+            label15.Text = ("                                                                    *** AFİYET OLSUN ***                         *** AFİYET OLSUN ***               *** AFİYET OLSUN ***  ");
+
+            timer1.Start();
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+             label17.Text = DateTime.Now.ToLongTimeString();
+             label16.Text = DateTime.Now.ToLongDateString();
+       label14.Text = label14.Text.Substring(1) + label14.Text.Substring(0, 1);
+       label15.Text = label15.Text.Substring(1) + label15.Text.Substring(0, 1);
+            this.Text = this.Text.Substring(1) + this.Text.Substring(0, 1);
+               
+            }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
+        }
+       
+        
+        
+        }
+    }
+
