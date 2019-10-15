@@ -1,0 +1,197 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using System.Data.OleDb;
+
+namespace ogrenci_takip
+{
+    public partial class Form1 : Form
+    {
+        OleDbConnection baglanti = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=vt1.mdb");
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        private void verial()
+        {
+            try
+            {
+                OleDbCommand veri = new OleDbCommand("select * from tablo1", baglanti);
+                OleDbDataReader oku = null;
+                baglanti.Open();
+                oku = veri.ExecuteReader();
+                listView1.Items.Clear();
+                while (oku.Read())
+                {
+                    ListViewItem kayit = new ListViewItem(oku["num"].ToString());
+                    kayit.SubItems.Add(oku["ad"].ToString());
+                    kayit.SubItems.Add(oku["soy"].ToString());
+                    kayit.SubItems.Add(oku["sinif"].ToString());
+                    kayit.SubItems.Add(oku["y1"].ToString());
+                    kayit.SubItems.Add(oku["y2"].ToString());
+                    kayit.SubItems.Add(oku["s1"].ToString());
+                    kayit.SubItems.Add(oku["ort"].ToString());
+                    listView1.Items.Add(kayit);
+                }
+                oku.Close();
+                baglanti.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Veri Tabanıyla Bağlantı Kurulamadı.\nProgramın bulunduğu dizinde vt1.mdb\ndosyasının bulunduğundan emin olun\nve programı tekrar başlatın");
+            }
+        }
+        private void temizle()
+        {
+            textBox1.Clear(); textBox2.Clear(); textBox3.Clear(); textBox4.Clear(); textBox8.Text = "0"; textBox7.Text = "0"; textBox6.Text = "0";
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            verial();
+        }
+
+        private void kayit()
+        {
+            try
+            {
+                int ort;
+                ort = (int.Parse(textBox8.Text) + int.Parse(textBox7.Text) + int.Parse(textBox6.Text)) / 3;
+                OleDbCommand kaydet = new OleDbCommand("insert into tablo1 (num,ad,soy,sinif,y1,y2,s1,ort) values('" + int.Parse(textBox1.Text) + "','" + textBox2.Text + "','" + textBox3.Text + "','" + textBox4.Text + "','" + int.Parse(textBox8.Text) + "','" + int.Parse(textBox7.Text) + "','" + int.Parse(textBox6.Text) + "','" + ort + "')", baglanti);
+                baglanti.Open();
+                kaydet.ExecuteNonQuery();
+                baglanti.Close();
+                verial();
+                temizle();
+            }
+            catch
+            {
+                MessageBox.Show("Database'e bağlantı sağlanamadı.\nProgramın bulunduğu dizinde vt1.mdb\ndosyasının bulunduğundan emin olun\nve programı tekrar başlatın");
+            }
+        }
+
+        private void sil()
+        {
+            try
+            {
+                int a;
+                a = int.Parse(listView1.SelectedItems[0].Text);
+                OleDbCommand sil = new OleDbCommand("delete from tablo1 where num =" + a + "", baglanti);
+                baglanti.Open();
+                sil.ExecuteNonQuery();
+                baglanti.Close();
+                verial();
+            }
+            catch
+            {
+                MessageBox.Show("Database'e bağlantı sağlanamadı.\nProgramın bulunduğu dizinde vt1.mdb\ndosyasının bulunduğundan emin olun\nve programı tekrar başlatın");
+            }
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if ((textBox1.Text == "") || (textBox2.Text == "") || (textBox3.Text == "") || (textBox4.Text == ""))
+            {
+                MessageBox.Show("Lütfen Bilgileri eksiksiz giriniz\nAksi Taktirde Ekleme işlemi yapılmayacaktır", "Uyarı..!");
+            }
+            else
+            {
+                kayit();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            sil();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (button4.Text == "Düzenle")
+            {
+                try
+                {
+                    textBox1.Text = listView1.SelectedItems[0].SubItems[0].Text;
+                    textBox2.Text = listView1.SelectedItems[0].SubItems[1].Text;
+                    textBox3.Text = listView1.SelectedItems[0].SubItems[2].Text;
+                    textBox4.Text = listView1.SelectedItems[0].SubItems[3].Text;
+                    textBox8.Text = listView1.SelectedItems[0].SubItems[4].Text;
+                    textBox7.Text = listView1.SelectedItems[0].SubItems[5].Text;
+                    textBox6.Text = listView1.SelectedItems[0].SubItems[6].Text;
+                    button4.Text = "İptal";
+                    button3.Enabled = true;
+                }
+                catch
+                {
+                    MessageBox.Show("Lütfen Listeden Değiştirmek istediğiniz\nKayıdı önce seçmelisiniz!","Uyarı..!");
+                }
+            }
+            else
+            {
+                button4.Text = "Düzenle";
+                button3.Enabled = false;
+                temizle();
+            }
+        }
+        private void duzelt()
+        {
+            try
+            {
+                int a,ort;
+                a = int.Parse(listView1.SelectedItems[0].Text);
+                ort = (int.Parse(textBox8.Text) + int.Parse(textBox7.Text) + int.Parse(textBox6.Text)) / 3;
+                OleDbCommand duz = new OleDbCommand("update tablo1 set num='"+int.Parse(textBox1.Text)+"',ad='"+textBox2.Text+"',soy='"+textBox3.Text+"',sinif='"+textBox4.Text+"',y1='"+int.Parse(textBox8.Text)+"',y2='"+int.Parse(textBox7.Text)+"',s1='"+int.Parse(textBox6.Text)+"',ort='"+ort+"' where num="+a+"",baglanti);
+                baglanti.Open();
+                duz.ExecuteNonQuery();
+                baglanti.Close();
+                verial();
+                temizle();
+            }
+            catch
+            {
+                MessageBox.Show("Database'e bağlantı sağlanamadı.\nProgramın bulunduğu dizinde vt1.mdb\ndosyasının bulunduğundan emin olun\nve programı tekrar başlatın");
+            }
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            duzelt();
+            button3.Enabled = false;
+            button4.Text = "Düzelt";
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            int bul;
+            bul = int.Parse(textBox5.Text);
+            OleDbCommand ara = new OleDbCommand("Select * from tablo1 where num = " + bul + "", baglanti);
+            OleDbDataReader oku = null;
+            baglanti.Open();
+            oku=ara.ExecuteReader();
+            listView1.Items.Clear();
+            while (oku.Read())
+            {
+                ListViewItem kayit = new ListViewItem(oku["num"].ToString());
+                kayit.SubItems.Add(oku["ad"].ToString());
+                kayit.SubItems.Add(oku["soy"].ToString());
+                kayit.SubItems.Add(oku["sinif"].ToString());
+                kayit.SubItems.Add(oku["y1"].ToString());
+                kayit.SubItems.Add(oku["y2"].ToString());
+                kayit.SubItems.Add(oku["s1"].ToString());
+                kayit.SubItems.Add(oku["ort"].ToString());
+                listView1.Items.Add(kayit);
+            }
+            oku.Close();
+            baglanti.Close();
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+    }
+}
