@@ -1,0 +1,99 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace AtYarisi
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+          
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {     
+
+            timer1.Enabled = true;
+           
+
+            
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+
+            pictureBox1.Left += rnd.Next(1, 10);
+            pictureBox2.Left += rnd.Next(1, 10);
+            pictureBox3.Left += rnd.Next(1, 10);
+            if (pictureBox1.Location.X > pictureBox2.Location.X && pictureBox1.Location.X > pictureBox3.Location.X)
+            {
+                label5.Text = ("AYHAN ÖNDE GİDİYOR");
+                label6.Text = pictureBox1.Location.X.ToString();
+                label7.Text = pictureBox1.Location.Y.ToString();
+            }
+
+
+            if (pictureBox2.Location.X > pictureBox1.Location.X && pictureBox2.Location.X > pictureBox3.Location.X)
+            {
+                label5.Text = ("ERHAN ÖNDE GİDİYOR");
+                label6.Text = pictureBox2.Location.X.ToString();
+                label7.Text = pictureBox2.Location.Y.ToString();
+            }
+
+            if (pictureBox3.Location.X > pictureBox2.Location.X && pictureBox3.Location.X > pictureBox1.Location.X)
+            {
+                label5.Text = ("SERHAT ÖNDE GİDİYOR");
+                label6.Text = pictureBox3.Location.X.ToString();
+                label7.Text = pictureBox3.Location.Y.ToString();
+            }
+
+
+            if (pictureBox1.Location.X >= 900 && pictureBox1.Location.X > pictureBox2.Location.X && pictureBox1.Location.X > pictureBox3.Location.X)
+            {
+                timer1.Enabled = false;
+                
+                MessageBox.Show("AYHAN kazandı...");
+                this.Hide();
+                                
+            }
+            if (pictureBox2.Location.X >= 900 && pictureBox2.Location.X > pictureBox1.Location.X && pictureBox2.Location.X > pictureBox3.Location.X)
+            {
+                timer1.Enabled = false;
+                
+                MessageBox.Show( " ERHAN kazandı...");
+                this.Hide();
+                               
+            }
+            if (pictureBox3.Location.X >= 900 && pictureBox3.Location.X > pictureBox2.Location.X && pictureBox3.Location.X > pictureBox1.Location.X)
+            {
+                timer1.Enabled = false;
+
+                MessageBox.Show("SERHAT kazandı...");
+                this.Hide();
+
+            }
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+
+        
+    }
+}
