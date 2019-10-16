@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <Math.h>
+
+
+int main()
+{
+    
+         float tb,us;
+         printf("TABAN GIR \n");
+         scanf("%f",&tb);
+         printf("US GIRIN \n");
+         scanf("%f",&us);
+        float islem=exp(us * log(tb));
+        printf("ISLEMIN SONUCU = %f \n\n",islem);         
+
+    return 0;
+}
