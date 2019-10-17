@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    float sayi=1.0*100;
+    while(5){
+          sayi=sayi-0.1*100;
+           printf("sayi= %f \n",sayi/100);
+        if(sayi/100==0){
+        printf(" sonuç sayi= %f",sayi);
+        break;
+    }else if(sayi<0){
+    printf("hata oldu  sayi =%f", sayi);
+    break;
+
+    }
+    }
+    return 0;
+}
+
+
