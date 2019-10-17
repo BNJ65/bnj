@@ -1,0 +1,16 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+double X=1,L=2,M=3,N=4,e=5,f=6,g=7,h=8,W=9,y=10,z=11;
+double ustsol=1/(2*X*L);
+double ustsag=(M*N)*((e*f-g)/(h));
+double alt=(W*(y+z));
+double ISLEM=(ustsol-ustsag)/(alt);
+
+
+printf("|\t ISLEMIN SONUCU\t |\n");
+printf("|\t   %f \t |\n - - - - - - - - - - - - - \n\n",	ISLEM);
+return 0;
+}
