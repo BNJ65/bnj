@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+int OBEB(int U,int K){
+	int KLN=U%K;
+	
+	if(KLN==0)
+	return K;
+	else
+	 OBEB(K,KLN);
+	
+}
+int main() {
+	
+int ISLEM=	OBEB(95,15);
+printf("%d",ISLEM);
+	return 0;
+}
