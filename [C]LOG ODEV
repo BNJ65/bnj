@@ -1,0 +1,31 @@
+#include <conio.h>
+#include <stdio.h>
+#include <stdint.h>
+
+
+
+int main()
+{
+    while(1)
+    {
+        float  a=0;
+        printf("LUTFEN SAYI GIR... \n");
+        scanf("%f",&a);
+        float ILK = 0.0;
+        float OR1 = (a - 1) / (a + 1);
+        float OR2 = OR1 * OR1;
+        float SYC = 1.0;
+        float CRP = OR1;
+        float SONR = CRP;
+        float ISLEM = SONR;
+        while ( ISLEM != ILK)
+        {
+            ILK = ISLEM;
+            SYC += 2.0;
+            CRP *= OR2;
+            ISLEM += CRP / SYC;
+        }
+        printf(" GIRDIGINIZ ISLEM SONUCU (%f)::: %f \n",a,0.1200f *ISLEM);
+    }
+    return 0;
+}
