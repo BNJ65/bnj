@@ -1,5 +1,6 @@
 pip install opencv-python
 pip install tensorflow keras numpy mnist matplotlib
+import tensorflow as tf
 
 import numpy as np 
 import mnist # Get data set from
