@@ -1,0 +1,60 @@
+pip install opencv-python
+pip install tensorflow keras numpy mnist matplotlib
+
+import numpy as np 
+import mnist # Get data set from
+from keras.models import Sequential #ANN architecture
+from keras. layers import Dense # The layers in the ANN
+from keras.utils import to_categorical
+import matplotlib.pyplot as plt # Graph
+
+train_images = mnist.train_images() # training data of images
+train_labels = mnist.train_labels() # training data of the labels
+test_images = mnist. test_images()  # testing data images
+test_labels = mnist.test_labels() 
+
+train_images = (train_images / 255) - 0.5
+test_images = (test_images/ 255) - 0.5
+
+train_images = train_images.reshape((-1, 784))
+test_images = test_images.reshape((-1,784))
+#print the new image shape
+print(train_images.shape) #60,000 rows and 784 cols
+print(test_images.shape)
+
+model = Sequential()
+model.add(Dense(64, activation='relu', input_dim=784))
+model.add(Dense(64, activation='relu'))
+model.add(Dense(10, activation='softmax'))
+
+model.compile(
+  optimizer= 'adam',
+    loss = 'categorical_crossentropy', #loss function for classes > 2
+    metrics = ['accuracy']
+)
+
+model.fit(
+    train_images, #The training data images
+    to_categorical(train_labels),#The trainind data labels, label data only returns a single digit representing the class of each label Ex: train_labels = 2,to_categorical(2)= [0,0,1,0,0,0,0,0,0,0]
+    epochs=5, #Number of iterations over the entire data set to train on
+    batch_size = 3 #The number of samples per gradient update for training
+)
+
+model.evaluate(
+  test_images,
+  to_categorical(test_labels)
+)
+
+model.save_weights('model.h5')
+
+predictions = model.predict(test_images[:5])
+print (np.argmax(predictions, axis =1))
+print(test_labels[:5])
+
+import matplotlib.pyplot as plt
+for i in range(0,5):
+  first_image = test_images[i]
+  first_image = np.array(first_image, dtype='float')
+  pixels = first_image.reshape((28, 28))
+  plt.imshow(pixels, cmap='gray')
+  plt.show()
